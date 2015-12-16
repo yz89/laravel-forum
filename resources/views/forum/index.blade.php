@@ -5,9 +5,9 @@
 
         <!-- Main component for a primary marketing message or call to action -->
         <div class="jumbotron">
-            <h1>Hello World!
-                <a class="btn btn-lg btn-primary pull-right" href="#" role="button">View navbar docs »</a>
-            </h1>
+            <h2>欢迎来到Laravel App社区
+                <a class="btn btn-lg btn-primary pull-right" href="#" role="button">发布新的帖子</a>
+            </h2>
         </div>
         <div class="container">
         	<div class="row">
