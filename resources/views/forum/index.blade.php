@@ -20,7 +20,9 @@
                         		</a>
                         	</div>
                         	<div class="media-body">
-                        		<h4 class="media-heading">{{ $discusson->title }}</h4>
+                        		<h4 class="media-heading">
+                                    <a href="/discussions/{{ $discusson->id }}">{{ $discusson->title }}</a>
+                                </h4>
                                 {{ $discusson->user->name }}
                         	</div>
                         </div>
