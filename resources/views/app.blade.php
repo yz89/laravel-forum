@@ -23,8 +23,12 @@
                 <li class="active"><a href="#">首页</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">登 录</a></li>
-                <li><a href="/users/register">注 册</a></li>
+                @if(Auth::check())
+                    <li><a href="/">{{ Auth::user()->name }}</a></li>
+                @else
+                    <li><a href="/users/login">登 录</a></li>
+                    <li><a href="/users/register">注 册</a></li>
+                @endif
             </ul>
         </div><!--/.nav-collapse -->
     </div>

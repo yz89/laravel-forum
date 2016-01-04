@@ -94,4 +94,21 @@ class UsersController extends Controller
     {
         //
     }
+
+    public function login()
+    {
+        return view('users.login');
+    }
+
+    public function signin(Requests\UserLoginRequest $request)
+    {
+        if(\Auth::attempt([
+            'email'=>$request->get('email'),
+            'password'=>$request->get('password')
+        ])){
+           return redirect('/');
+        }
+        \Session::flash('user_login_failed','密码不正确或邮箱没验证');
+        return redirect('users/login')->withInput();
+    }
 }
