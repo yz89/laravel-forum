@@ -24,7 +24,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">登 录</a></li>
-                <li><a href="#">注 册</a></li>
+                <li><a href="/users/register">注 册</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

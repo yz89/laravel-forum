@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -9,6 +10,11 @@ use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {
+    public function register()
+    {
+        return view('users.register');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -35,9 +41,13 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\UserRegisterRequest $request)
     {
-        //
+//        dd($request->all());
+        // 保存用户数,重定向
+        User::create(array_merge($request->all(),['avatar'=>'images/default-avatar.jpg']));
+        // send email
+        return redirect('/');
     }
 
     /**
