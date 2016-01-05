@@ -39,7 +39,12 @@ class User extends Model implements AuthenticatableContract,
 
     public function discussons()
     {
-        return $this->hasMany(Discussion::Class);
+        return $this->hasMany(Discussion::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
     public function setPasswordAttribute($password)
