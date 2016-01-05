@@ -32,7 +32,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -45,7 +45,7 @@ class UsersController extends Controller
     {
 //        dd($request->all());
         // 保存用户数,重定向
-        User::create(array_merge($request->all(),['avatar'=>'images/default-avatar.jpg']));
+        User::create(array_merge($request->all(),['avatar'=>'/images/default-avatar.jpg']));
         // send email
         return redirect('/');
     }
@@ -110,5 +110,11 @@ class UsersController extends Controller
         }
         \Session::flash('user_login_failed','密码不正确或邮箱没验证');
         return redirect('users/login')->withInput();
+    }
+
+    public function logout()
+    {
+        \Auth::logout();
+        return redirect('/');
     }
 }

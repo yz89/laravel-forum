@@ -10,6 +10,11 @@ use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth',['only'=>['create','store','edit','update']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +34,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('forum.create');
     }
 
     /**
@@ -38,9 +43,14 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\StoreBolgRequest $request)
     {
-        //
+        $data = [
+            'user_id'=>\Auth::user()->id,
+            'last_user_id'=>\Auth::user()->id,
+        ];
+        $discussion = Discussion::create(array_merge($request->all(), $data));
+        return redirect()->action('PostController@show',['id'=>$discussion->id]);
     }
 
     /**
