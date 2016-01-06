@@ -23,4 +23,7 @@ Route::get('/users/register','UsersController@register');
 Route::post('/users/register','UsersController@store');
 Route::get('/users/login','UsersController@login');
 Route::post('/users/login','UsersController@signin');
+Route::get('/users/avatar','UsersController@avatar');
 Route::get('/logout','UsersController@logout');
+
+Route::post('/avatar','UsersController@changeavatar');

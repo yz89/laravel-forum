@@ -112,6 +112,16 @@ class UsersController extends Controller
         return redirect('users/login')->withInput();
     }
 
+    public function avatar()
+    {
+        return view('users.avatar');
+    }
+
+    public function changeavatar()
+    {
+        dd('avatar');
+    }
+
     public function logout()
     {
         \Auth::logout();
