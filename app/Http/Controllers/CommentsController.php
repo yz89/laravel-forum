@@ -2,19 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Discussion;
+use App\Comment;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class PostController extends Controller
+class CommentsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth',['only'=>['create','store','edit','update']]);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -22,9 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $discussons = Discussion::latest()->get();
-
-        return view('forum.index',compact('discussons'));
+        //
     }
 
     /**
@@ -34,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('forum.create');
+        //
     }
 
     /**
@@ -43,14 +36,11 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\StoreBolgRequest $request)
+    public function store(Requests\PostCommentRequest $request)
     {
-        $data = [
-            'user_id'=>\Auth::user()->id,
-            'last_user_id'=>\Auth::user()->id,
-        ];
-        $discussion = Discussion::create(array_merge($request->all(), $data));
-        return redirect()->action('PostController@show',['id'=>$discussion->id]);
+        Comment::create(array_merge($request->all(),['user_id'=>\Auth::user()->id]));
+
+        return redirect()->action('PostController@show',['id'=>$request->get('discussion_id')]);
     }
 
     /**
@@ -61,9 +51,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $discussion = Discussion::findOrFail($id);
-
-        return view('forum.show',compact('discussion'));
+        //
     }
 
     /**
@@ -74,12 +62,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $discussion = Discussion::findOrFail($id);
-        if(\Auth::user()->id !== $discussion->user_id)
-        {
-            return redirect('/');
-        }
-        return view('forum.edit',compact('discussion'));
+        //
     }
 
     /**
@@ -89,12 +72,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\StoreBolgRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $discussion = Discussion::findOrFail($id);
-        $discussion->update($request->all());
-
-        return redirect()->action('PostController@show',['id'=>$discussion->id]);
+        //
     }
 
     /**

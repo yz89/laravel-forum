@@ -11,9 +11,14 @@
 |
 */
 
+// Post Routes
 Route::get('/', 'PostController@index');
 Route::resource('discussions','PostController');
 
+// Comment Routes
+Route::resource('comment','CommentsController');
+
+// User Routes
 Route::get('/users/register','UsersController@register');
 Route::post('/users/register','UsersController@store');
 Route::get('/users/login','UsersController@login');
